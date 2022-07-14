@@ -1,0 +1,68 @@
+1.
+var obj1 = {name:"Person 1", age:5}; 
+var obj2 = {age:5, name:"Person 2"};
+  
+var flag=true;
+
+if(Object.keys(obj1).length==Object.keys(obj2).length){
+    for(key in obj1) { 
+        if(obj1[key] == obj2[key]) {
+            continue;
+        }
+        else {
+            flag=false;
+            break;
+        }
+    }
+}
+else {
+    flag=false;
+}
+console.log("Objects is equal: "+flag);
+
+Output:  
+Objects is equal: false
+
+2. // using rest country api url to show all the flags
+
+let xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v2/all");
+xhr.onload=function(){
+    if(xhr.status >= 200 && xhr.status < 300){
+        let data=JSON.parse(this.response);
+        console.log(data);
+        for(let i=0;i<data.length;i++){
+            console.log(data[i].flag);
+        }
+    }else
+    {
+        console.log("Error")
+    }
+}
+xhr.send();
+
+
+
+3.//using rest countries data to print all country names,region,sub region and population
+
+let xhr=new XMLHttpRequest();
+xhr.open('GET',"https://restcountries.com/v2/all");
+xhr.onload=function(){
+    if(xhr.status >=200 && xhr.status <300){
+       let data=JSON.parse(this.response);
+       
+       for(let i=0;i<data.length;i++){
+        console.log(`
+            Name:${data[i].name}
+            Region:${data[i].region}
+            SubRegion:${data[i].subregion}         
+            Population:${data[i].population}
+        `);
+       }
+    }
+}
+xhr.send();
+
+
+  
+       
